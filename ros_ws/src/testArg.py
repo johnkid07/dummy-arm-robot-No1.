@@ -35,7 +35,11 @@ def pub_msg():
             if result.multi_hand_landmarks:
                 for handLMS in result.multi_hand_landmarks:
                     mpDraw.draw_landmarks(frame, handLMS,mpHand.HAND_CONNECTIONS)
-                    for id, lm in enumerate(handLMS.landmark):
+                    myHand  = result.multi_hand_landmarks[0]
+                    for id, lm in enumerate(myHand.landmark):
+                        h, w, c = frame.shape
+                        cx, cy = int(lm.x*w), int(lm.y*h)
+                        lmList.append([id, cx, cy])
                         if id == 9:
                             h, w, c = frame.shape
                             cx, cy = int(lm.x*w), int(lm.y*h)
@@ -49,14 +53,6 @@ def pub_msg():
                             rospy.loginfo(con)
                             pub.publish(con)
                             rate.sleep()
-            if result.multi_hand_landmarks:
-                for handLMS in result.multi_hand_landmarks:
-                    myHand  = result.multi_hand_landmarks[0]
-                    for id, lm in enumerate(myHand.landmark):
-                        h, w, c = frame.shape
-                        cx, cy = int(lm.x*w), int(lm.y*h)
-                        lmList.append([id, cx, cy])
-                        
 
                     if len(lmList) != 0:
                         x1, y1 = lmList[4][1],  lmList[4][2]
