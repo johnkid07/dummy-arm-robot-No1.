@@ -41,10 +41,6 @@ def pub_msg():
                         cx, cy = int(lm.x*w), int(lm.y*h)
                         lmList.append([id, cx, cy])
                         if id == 9:
-                            h, w, c = frame.shape
-                            cx, cy = int(lm.x*w), int(lm.y*h)
-                            
-                            
                             con.linear.x = cx
                             con.linear.y = cy
 
