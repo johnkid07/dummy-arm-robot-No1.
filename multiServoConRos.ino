@@ -3,7 +3,7 @@
 
 #include <ax12.h>
 
-
+//init position
 ros::NodeHandle nh;
 int a = 400 , b = 200;
 int c = 400 , d = 519;
